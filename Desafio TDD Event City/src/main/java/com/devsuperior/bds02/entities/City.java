@@ -5,17 +5,18 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "tb_city")
 public class City {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = IDENTITY)
 	private Long id;
 	private String name;
 	
@@ -30,7 +31,11 @@ public class City {
 		this.name = name;
 	}
 
-	public Long getId() {
+    public City(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
 		return id;
 	}
 
