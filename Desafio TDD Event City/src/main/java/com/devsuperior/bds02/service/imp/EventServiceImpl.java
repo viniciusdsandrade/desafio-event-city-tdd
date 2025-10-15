@@ -39,7 +39,7 @@ public class EventServiceImpl implements EventService {
                 city
         );
 
-        entity = repository.save(entity);
+        repository.save(entity);
         return new EventDTO(entity);
     }
 }
