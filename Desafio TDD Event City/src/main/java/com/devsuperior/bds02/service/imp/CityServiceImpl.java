@@ -12,10 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-import static org.springframework.data.domain.Sort.Order.asc;
-import static org.springframework.data.domain.Sort.by;
-
 @Service
 public class CityServiceImpl implements CityService {
 
@@ -25,12 +21,10 @@ public class CityServiceImpl implements CityService {
         this.cityRepository = cityRepository;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<CityDTO> findAllSortedByName() {
-        List<City> list = cityRepository.findAll(by(asc("name").ignoreCase()));
-        return list.stream()
-                .map(CityDTO::new)
-                .collect(toList());
+        return cityRepository.findAllDTOOrderByNameAscIgnoreCase();
     }
 
     @Override

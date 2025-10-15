@@ -33,8 +33,10 @@ public class CityController {
     @PostMapping
     public ResponseEntity<CityDTO> insert(@RequestBody CityDTO dto) {
         CityDTO saved = service.insert(dto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(saved.id()).toUri();
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/{id}")
+                .buildAndExpand(saved.id())
+                .toUri();
         return created(uri).body(saved);
     }
 
