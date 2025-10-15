@@ -25,7 +25,6 @@ public class CityServiceImpl implements CityService {
         this.cityRepository = cityRepository;
     }
 
-    @Transactional(readOnly = true)
     @Override
     public List<CityDTO> findAllSortedByName() {
         List<City> list = cityRepository.findAll(by(asc("name").ignoreCase()));
@@ -34,16 +33,16 @@ public class CityServiceImpl implements CityService {
                 .collect(toList());
     }
 
-    @Transactional
     @Override
+    @Transactional
     public CityDTO insert(CityDTO dto) {
         City entity = new City(dto.name());
         cityRepository.save(entity);
         return new CityDTO(entity);
     }
 
-    @Transactional
     @Override
+    @Transactional
     public void delete(Long id) {
         if (!cityRepository.existsById(id)) throw new ResourceNotFoundException("City id not found " + id);
 

@@ -8,7 +8,6 @@ import com.devsuperior.bds02.dto.CityDTO;
 
 public interface CityService {
 
-    @Transactional(readOnly = true)
     List<CityDTO> findAllSortedByName();
 
     @Transactional

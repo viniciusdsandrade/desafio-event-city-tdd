@@ -22,8 +22,8 @@ public class EventServiceImpl implements EventService {
         this.cityRepository = cityRepository;
     }
 
-    @Transactional
     @Override
+    @Transactional
     public EventDTO update(Long id, EventDTO dto) {
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Event id not found " + id));
